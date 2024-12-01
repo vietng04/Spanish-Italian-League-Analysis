@@ -1,30 +1,24 @@
-# Starter folder
+# How does home-field advantage impact goal-scoring in Spanish and Italian League?
 
 ## Overview
-
-This repo provides students with a foundation for their own projects associated with *Telling Stories with Data*. You do not need every aspect for every paper and you should delete aspects that you do not need.
+This repository supports a project examining how home-field advantage influences goal-scoring patterns in the Spanish and Italian soccer leagues. The analysis uses data from publicly available sources and employs statistical methods to assess differences in home and away goal-scoring trends.
 
 
 ## File Structure
 
 The repo is structured as:
 
--   `data/raw_data` contains the raw data as obtained from X.
--   `data/analysis_data` contains the cleaned dataset that was constructed.
--   `model` contains fitted models. 
--   `other` contains relevant literature, details about LLM chat interactions, and sketches.
--   `paper` contains the files used to generate the paper, including the Quarto document and reference bibliography file, as well as the PDF of the paper. 
--   `scripts` contains the R scripts used to simulate, download and clean data.
+-   `data/raw_data` contains the raw data as obtained from https://github.com/jalapic/engsoccerdata.git
+-   `data/analysis_data` Includes cleaned and processed datasets used for statistical modeling and visualization.
+-   `model` Houses fitted statistical models for both leagues, focusing on the effects of home-field advantage.
+-   `other` Contains related literature, LLM chat logs documenting tool-assisted writing, and exploratory sketches.
+-   `paper` Includes the Quarto project files (.qmd), the bibliography file (.bib), and the final PDF version of the paper.
+-   `scripts` Provides R scripts for data cleaning, analysis, and visualization.
 
 
 ## Statement on LLM usage
 
-Aspects of the code were written with the help of the auto-complete tool, Codriver. The abstract and introduction were written with the help of ChatHorse and the entire chat history is available in inputs/llms/usage.txt.
+The creation of this project incorporated Large Language Model (LLM) tools for efficiency and clarity. Specific contributions include:
 
-## Some checks
-
-- [ ] Change the rproj file name so that it's not starter_folder.Rproj
-- [ ] Change the README title so that it's not Starter folder
-- [ ] Remove files that you're not using
-- [ ] Update comments in R scripts
-- [ ] Remove this checklist
+- Code Assistance: Auto-complete and optimization suggestions were provided by Codriver.
+- Text Generation: Portions of the abstract, introduction, and methodology were written collaboratively with ChatGPT, with a detailed     history available in inputs/llms/usage.txt.

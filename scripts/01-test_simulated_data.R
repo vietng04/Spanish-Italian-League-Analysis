@@ -1,20 +1,19 @@
 #### Preamble ####
-# Purpose: Tests the structure and validity of the simulated National Football Team Stats
+# Purpose: Tests the structure and validity of the simulated Spain league dataset
 # Author: Viet Nguyen
 # Date: 28 November 2024
 # Contact: viethoang.nguyen@mail.utoronto.ca
 # License: MIT
 # Pre-requisites: 
-  # - The `tidyverse` package must be installed and loaded
-  # - 00-simulate_data.R must have been run
+# - The `tidyverse` package must be installed and loaded
+# - 00-simulate_data.R must have been run
 # Any other information needed? Make sure you are in the `starter_folder` rproj
-
 
 #### Workspace setup ####
 library(tidyverse)
 library(testthat)
 
-simulated_data <- read_csv("/Users/nguyenviet/Desktop/STA304/national-football-team-stats/data/00-simulated_data/simulated_data.csv")
+simulated_data <- read_csv("/Users/nguyenviet/Desktop/STA304/spain_league/data/00-simulated_data/simulated_data.csv")
 
 # Test if the data was successfully loaded
 if (exists("simulated_data")) {
@@ -23,65 +22,93 @@ if (exists("simulated_data")) {
   stop("Test Failed: The dataset could not be loaded.")
 }
 
-
 #### Test data ####
-
-# Check if the dataset has 89 rows
-if (nrow(simulated_data) == 89) {
-  message("Test Passed: The dataset has 89 rows.")
+# Check if the dataset has 93 rows
+if (nrow(simulated_data) == 93) {
+  message("Test Passed: The dataset has 93 rows.")
 } else {
-  stop("Test Failed: The dataset does not have 89 rows.")
+  stop("Test Failed: The dataset does not have 93 rows.")
 }
 
 # Test: Check that required columns exist
-test_that("Dataset contains all required columns", {
-  required_columns <- c("date", "home_team", "away_team", "home_score", "away_score", "tournament")
-  expect_true(all(required_columns %in% colnames(simulated_data)))
-})
-
-# Test: Validate tournament names
-test_that("Tournament names are valid", {
-  valid_tournaments <- c("FIFA World Cup", "UEFA Euro", "UEFA Nations League", "Friendly")
-  expect_true(all(simulated_data$tournament %in% valid_tournaments))
-})
-
-# Check countries are in simulated data
-valid_countries <- c("Argentina", "France", "Spain", "England", "Brazil", "Belgium", 
-                     "Portugal", "Netherlands", "Italy", "Germany", "Croatia", "Uruguay", 
-                     "Japan", "South Korea")
-
-# Test home team contains valid countries
-if (all(simulated_data$home_team %in% valid_countries)) {
-  message("Test Passed: The 'home_team' contains valid_countries")
+required_columns <- c("date", "home", "visitor", "hgoal", "vgoal", "FT")
+if (all(required_columns %in% colnames(simulated_data))) {
+  message("Test Passed: Dataset contains all required columns.")
 } else {
-  stop("Test Failed: The 'home_team' column contains invalid countries names.")
+  stop("Test Failed: Dataset does not contain all required columns.")
+}
+
+# Check clubs are in simulated data
+valid_clubs <- c("FC Barcelona", "Real Madrid", "Atletico Madrid", "Villarreal CF", "Athletic Bilbao", "CA Osasuna", 
+                 "Sevilla FC", "Real Sociedad", "Valencia CF", "Real Betis", "Cadiz CF", "Granada CF")
+
+# Test home team contains valid clubs
+if (all(simulated_data$home %in% valid_clubs)) {
+  message("Test Passed: The 'home_team' contains valid clubs.")
+} else {
+  stop("Test Failed: The 'home_team' column contains invalid club names.")
 }
 
 # Test away team contains valid countries
-if (all(simulated_data$away_team %in% valid_countries)) {
-  message("Test Passed: The 'away_team' contains valid_countries")
+if (all(simulated_data$visitor %in% valid_clubs)) {
+  message("Test Passed: The 'away_team' contains valid clubs.")
 } else {
-  stop("Test Failed: The 'away_team' column contains invalid countries names.")
+  stop("Test Failed: The 'away_team' column contains invalid club names.")
 }
 
-
 # Test: Validate column types
-test_that("Column types are correct", {
-  expect_s3_class(simulated_data$date, "Date")
-  expect_type(simulated_data$home_team, "character")
-  expect_type(simulated_data$away_team, "character")
-  expect_type(simulated_data$home_score, "double")
-  expect_type(simulated_data$away_score, "double")
-  expect_type(simulated_data$tournament, "character")
-})
+if (inherits(simulated_data$date, "Date")) {
+  message("Test Passed: 'date' column has correct class (Date).")
+} else {
+  stop("Test Failed: 'date' column has incorrect class.")
+}
+
+if (is.character(simulated_data$home)) {
+  message("Test Passed: 'home' column has correct type (character).")
+} else {
+  stop("Test Failed: 'home' column has incorrect type.")
+}
+
+if (is.character(simulated_data$visitor)) {
+  message("Test Passed: 'visitor' column has correct type (character).")
+} else {
+  stop("Test Failed: 'visitor' column has incorrect type.")
+}
+
+if (is.double(simulated_data$hgoal)) {
+  message("Test Passed: 'hgoal' column has correct type (double).")
+} else {
+  stop("Test Failed: 'hgoal' column has incorrect type.")
+}
+
+if (is.double(simulated_data$vgoal)) {
+  message("Test Passed: 'vgoal' column has correct type (double).")
+} else {
+  stop("Test Failed: 'vgoal' column has incorrect type.")
+}
+
+if (is.double(simulated_data$FT)) {
+  message("Test Passed: 'FT' column has correct type (double).")
+} else {
+  stop("Test Failed: 'FT' column has incorrect type.")
+}
 
 # Test: Ensure no home_team equals away_team
-test_that("Home team is not the same as away team", {
-  expect_false(any(simulated_data$home_team == simulated_data$away_team))
-})
+if (any(simulated_data$home == simulated_data$visitor)) {
+  stop("Test Failed: Home team and away team cannot be the same.")
+} else {
+  message("Test Passed: Home team is not the same as away team.")
+}
 
 # Test: Ensure scores are within a reasonable range
-test_that("Scores are between 0 and 5", {
-  expect_true(all(simulated_data$home_score >= 0 & simulated_data$home_score <= 5))
-  expect_true(all(simulated_data$away_score >= 0 & simulated_data$away_score <= 5))
-})
+if (all(simulated_data$hgoal >= 0 & simulated_data$hgoal <= 5)) {
+  message("Test Passed: Home scores are between 0 and 5.")
+} else {
+  stop("Test Failed: Home scores are out of range.")
+}
+
+if (all(simulated_data$vgoal >= 0 & simulated_data$vgoal <= 5)) {
+  message("Test Passed: Visitor scores are between 0 and 5.")
+} else {
+  stop("Test Failed: Visitor scores are out of range.")
+}
