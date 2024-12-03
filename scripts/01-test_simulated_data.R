@@ -14,9 +14,16 @@ library(tidyverse)
 library(testthat)
 
 simulated_data <- read_csv("data/00-simulated_data/simulated_data_spain.csv")
+simulated_data1 <- read_csv("data/00-simulated_data/simulated_data_italy.csv")
 
 # Test if the data was successfully loaded
 if (exists("simulated_data")) {
+  message("Test Passed: The dataset was successfully loaded.")
+} else {
+  stop("Test Failed: The dataset could not be loaded.")
+}
+
+if (exists("simulated_data1")) {
   message("Test Passed: The dataset was successfully loaded.")
 } else {
   stop("Test Failed: The dataset could not be loaded.")
@@ -112,3 +119,76 @@ if (all(simulated_data$vgoal >= 0 & simulated_data$vgoal <= 5)) {
 } else {
   stop("Test Failed: Visitor scores are out of range.")
 }
+
+# Test Cases for Italy simulated data
+# Test if the data was successfully loaded
+if (exists("simulated_data1")) {
+  message("Test Passed: The Italy dataset was successfully loaded.")
+} else {
+  stop("Test Failed: The Italy dataset could not be loaded.")
+}
+
+#### Test data ####
+# Check if the Italy dataset has 100 rows
+if (nrow(simulated_data1) == 100) {
+  message("Test Passed: The Italy dataset has 100 rows.")
+} else {
+  stop("Test Failed: The Italy dataset does not have 100 rows.")
+}
+
+# Test: Check that required columns exist
+if (all(required_columns %in% colnames(simulated_data1))) {
+  message("Test Passed: Italy dataset contains all required columns.")
+} else {
+  stop("Test Failed: Italy dataset does not contain all required columns.")
+}
+
+# Check clubs are in simulated data1
+valid_clubs_italy <- c("SSC Napoli", "Atalanta", "Inter", "ACF Fiorentina", "Lazio Roma", "Juventus", "AC Milan",
+                       "Bologna FC", "Udinese Calcio", "Empoli FC", "AS Roma", "Genoa CFC")
+
+# Test home team contains valid clubs for Italy
+if (all(simulated_data1$home %in% valid_clubs_italy)) {
+  message("Test Passed: The 'home_team' contains valid clubs for Italy.")
+} else {
+  stop("Test Failed: The 'home_team' column contains invalid club names.")
+}
+
+# Test away team contains valid clubs for Italy
+if (all(simulated_data1$visitor %in% valid_clubs_italy)) {
+  message("Test Passed: The 'away_team' contains valid clubs for Italy.")
+} else {
+  stop("Test Failed: The 'away_team' column contains invalid club names.")
+}
+
+# Test: Validate column types
+if (inherits(simulated_data1$date, "Date")) {
+  message("Test Passed: 'date' column has correct class (Date).")
+} else {
+  stop("Test Failed: 'date' column has incorrect class.")
+}
+
+if (is.character(simulated_data1$home)) {
+  message("Test Passed: 'home' column has correct type (character).")
+} else {
+  stop("Test Failed: 'home' column has incorrect type.")
+}
+
+if (is.character(simulated_data1$visitor)) {
+  message("Test Passed: 'visitor' column has correct type (character).")
+} else {
+  stop("Test Failed: 'visitor' column has incorrect type.")
+}
+
+if (is.double(simulated_data1$hgoal)) {
+  message("Test Passed: 'hgoal' column has correct type (double).")
+} else {
+  stop("Test Failed: 'hgoal' column has incorrect type.")
+}
+
+if (is.double(simulated_data1$vgoal)) {
+  message("Test Passed: 'vgoal' column has correct type (double).")
+} else {
+  stop("Test Failed")
+}
+
