@@ -145,35 +145,30 @@ kable(summary_stats)
 #| label: fig-home_goals
 #| fig-cap: Distribution of Home Goals by League
 #| echo: false
-#| fig.width: 6
-#| fig.height: 4
+#| fig.width: 8
 ggplot(combined_data, aes(x = hgoal, fill = League)) +
   geom_histogram(bins = 20, alpha = 0.7, position = "dodge") +
-  labs(
-    x = "Home Goals",
-    y = "Frequency"
-  ) +
+  labs(x = "Home Goals", y = "Frequency") +
   theme_minimal()
 ```
 @fig-home_goals shows the distribution of home goals scored in matches from the Italian and Spanish football leagues, displaying surprising similarities between the two. The most common outcomes are 0 and 1 home goals, indicating that low-scoring games are prevalent in both levels. As the amount of goals grows, the frequency reduces substantially, with matches with four or more home goals being uncommon. This tendency suggests that, while home teams frequently benefit from home field advantage, extraordinarily high-scoring performances are rare. The comparable distributions indicate consistent goal-scoring dynamics across both leagues, necessitating more investigation to discover how home-field advantage influences total team performance.
+
 
 
 ```{r}
 #| label: fig-visitor_goals
 #| fig-cap: Distribution of Visitor Goals by League
 #| echo: false
-#| fig.width: 6
-#| fig.height: 4
+#| fig.width: 8
 ggplot(combined_data, aes(x = vgoal, fill = League)) +
   geom_histogram(bins = 20, alpha = 0.7, position = "dodge") +
-  labs(
-    x = "Visitor Goals",
-    y = "Frequency"
-  ) +
+  labs(x = "Visitor Goals", y = "Frequency") +
   theme_minimal()
 ```
 
 @fig-visitor_goals displays the frequency of visitor goals scored by teams in both the Italian and Spanish leagues. Both leagues exhibit similar patterns, with the most frequent occurrence being zero goals scored by the visiting team, followed by one or two goals. Higher goal tallies (three or more) are rare, reflecting the defensive nature of teams when playing away. The alignment of distributions suggests that visitor goal-scoring behavior is consistent across the two leagues.
+
+
 
 
 ```{r}
@@ -183,7 +178,6 @@ ggplot(combined_data, aes(x = vgoal, fill = League)) +
 #| warning: false
 #| echo: false
 #| fig.width: 8
-#| fig.height: 6
 combined_data %>%
   group_by(Season, League) %>%
   summarize(
@@ -197,29 +191,25 @@ combined_data %>%
   ggplot(aes(x = Season, y = Avg_Goals, color = Goal_Type)) +
   geom_line() +
   facet_wrap(~ League) +
-  labs(
-    title = "Average Goals per Season by League",
-    x = "Season",
-    y = "Average Goals"
-  ) +
+  labs(x = "Season", y = "Average Goals") +
   theme_minimal()
 ```
 
 @fig-average_goals compares the average number of home and visitor goals across three seasons for the Italian and Spanish leagues. In both leagues, the average home goals remain consistently higher than visitor goals, reaffirming the home-field advantage. However, the trends slightly fluctuate over time, with average goals dipping during the 2020 season (likely due to pandemic-related disruptions) before recovering in 2021. This emphasizes the temporal variations in scoring influenced by external factors.
 
 
+
 ```{r}
 #| label: fig-goals_scored
 #| fig-cap: Distribution of Goals Scored
 #| echo: false
-#| fig.width: 6
-#| fig.height: 4
+#| fig.width: 8
 combined_data %>%
   pivot_longer(cols = c(hgoal, vgoal), names_to = "goal_type", values_to = "goals") %>%
   ggplot(aes(x = goals, fill = goal_type)) +
   geom_bar(position = "dodge") +
   scale_fill_manual(values = c("hgoal" = "blue", "vgoal" = "red"), labels = c("Home Goals", "Visitor Goals")) +
-  labs(title = "Distribution of Goals Scored", x = "Goals", y = "Frequency", fill = "Goal Type")
+  labs(x = "Goals", y = "Frequency", fill = "Goal Type")
 ```
 
 @fig-goals_scored illustrates the overall distribution of home and visitor goals across all matches. Home teams (blue bars) consistently score more goals compared to visitors (red bars), with peaks at zero, one, and two goals for both groups. The disparity between home and visitor scoring is most pronounced at higher goal counts, demonstrating the dominance of home-field advantage in goal-scoring opportunities and performance.
@@ -270,12 +260,12 @@ Numerical Variables
 - $v_i$: Number of goals scored by the away team in match 
 
 2. Predictor Variables:
-- \(text{hometeam}_i\): Indicator for whether the home team belongs to a predefined prominent team group.
-- \(text{home_win}_i\): Indicator for whether the home team won the match.
-- \(text{goal_difference_home}_i\): Goal difference when the home team wins.
-- \(text{away_team}_i\): Indicator for whether the away team belongs to a predefined prominent team group.
-- \(text{away_win}_i\): Indicator for whether the away team won the match.
-- \(text{goal_difference_away}_i\): Goal difference when the away team wins.
+- $\text{home-team}_i$: Indicator for whether the home team belongs to a predefined prominent team group.
+- $\text{home-win}_i$: Indicator for whether the home team won the match.
+- $\text{goal-difference-home}_i$: Goal difference when the home team wins.
+- $\text{away-team}_i$: Indicator for whether the away team belongs to a predefined prominent team group.
+- $\text{away-win}_i$: Indicator for whether the away team won the match.
+- $\text{goal-difference-away}_i$: Goal difference when the away team wins.
 - $date_i$: Numerical representation of the match date.
 - $season_i$: Categorical variable representing the season, encoded numerically or as a factor.
   Priors (if applicable):
@@ -283,14 +273,17 @@ Numerical Variables
 - This representation captures the linear structure of the models, showing how each predictor contributes to the predicted number of   goals for home and away teams.
 
 $$
-h_i = \beta_0 + \beta_1 \cdot hometeam_i + \beta_2 \cdot homewin_i + \beta_3 \cdot goaldifferencehome_i + \beta_4 \cdot date_i + \beta_5 \cdot season_i + \epsilon
+h_i = \beta_0 + \beta_1 \cdot \text{home-team}_i + \beta_2 \cdot \text{home-win}_i + \beta_3 \cdot \text{goal-difference-home}_i + \beta_4 \cdot date_i + \beta_5 \cdot season_i + \epsilon
 $$
 
 $$
-v_i = \beta_0 + \beta_1 \cdot away_team_i + \beta_2 \cdot away_win_i + \beta_3 \cdot goaldifferenceaway_i + \beta_4 \cdot date_i + \beta_5 \cdot season_i + \epsilon
+v_i = \beta_0 + \beta_1 \cdot \text{away-team}_i + \beta_2 \cdot \text{away-win}_i + \beta_3 \cdot \text{goal-difference-away}_i + \beta_4 \cdot date_i + \beta_5 \cdot season_i + \epsilon
 $$
 
 ## Model justification
+
+\newpage
+
 ```{r}
 #| echo: false
 #| eval: true
@@ -304,6 +297,7 @@ home_italy_model <-readRDS(file = here::here("models/home_italy_model.rds"))
 away_italy_model <-readRDS(file = here::here("models/away_italy_model.rds"))
 ```
 
+
 ```{r}
 #| label: tbl-spain_home
 #| tbl-cap: Spanish League Summary Model Home Goals
@@ -311,6 +305,7 @@ away_italy_model <-readRDS(file = here::here("models/away_italy_model.rds"))
 #| eval: true
 #| warning: false
 #| message: false
+#| tbl.width: 8
 
 # Print the summary of the model of home spain model
 print(summary(home_spain_model))
@@ -335,6 +330,7 @@ print(summary(home_spain_model))
 #| eval: true
 #| warning: false
 #| message: false
+#| tbl.width: 8
 
 # Print the summary of the model of away spain model
 print(summary(away_spain_model))
@@ -351,6 +347,7 @@ print(summary(away_spain_model))
 - R-Squared: The model explains 41.99% of the variance in away goals, as indicated by the multiple $R^2$ value.
 - F-statistic: The overall model is statistically significant (F(5,1134)=164.2, p<2.2×10−16).
 
+\newpage
 ```{r}
 #| label: tbl-italy_home
 #| tbl-cap: Italian League Summary Model Home Goals
@@ -358,6 +355,7 @@ print(summary(away_spain_model))
 #| eval: true
 #| warning: false
 #| message: false
+#| tbl-width: 8
 
 # Print the summary of the model of home italy model
 print(summary(home_italy_model))
@@ -381,6 +379,7 @@ print(summary(home_italy_model))
 #| eval: true
 #| warning: false
 #| message: false
+#| tbl-width: 8
 
 # Print the summary of the model of away italy model
 print(summary(away_italy_model))
