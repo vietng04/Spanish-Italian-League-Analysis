@@ -13,7 +13,7 @@
 library(tidyverse)
 library(testthat)
 
-simulated_data <- read_csv("/Users/nguyenviet/Desktop/STA304/spain_league/data/00-simulated_data/simulated_data.csv")
+simulated_data <- read_csv("data/00-simulated_data/simulated_data_spain.csv")
 
 # Test if the data was successfully loaded
 if (exists("simulated_data")) {
@@ -23,11 +23,11 @@ if (exists("simulated_data")) {
 }
 
 #### Test data ####
-# Check if the dataset has 93 rows
-if (nrow(simulated_data) == 93) {
-  message("Test Passed: The dataset has 93 rows.")
+# Check if the dataset has 100 rows
+if (nrow(simulated_data) == 100) {
+  message("Test Passed: The dataset has 100 rows.")
 } else {
-  stop("Test Failed: The dataset does not have 93 rows.")
+  stop("Test Failed: The dataset does not have 100 rows.")
 }
 
 # Test: Check that required columns exist
@@ -94,7 +94,7 @@ if (is.double(simulated_data$FT)) {
 }
 
 # Test: Ensure no home_team equals away_team
-if (any(simulated_data$home == simulated_data$visitor)) {
+if (all(simulated_data$home != simulated_data$visitor)) {
   stop("Test Failed: Home team and away team cannot be the same.")
 } else {
   message("Test Passed: Home team is not the same as away team.")
