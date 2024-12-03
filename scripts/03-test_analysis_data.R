@@ -16,9 +16,16 @@ library(here)
 
 # Load data
 analysis_data <- read_csv("../data/02-analysis_data/analysis_data_spain.csv")
+analysis_data1 <- read_csv("../data/02-analysis_data/analysis_data_italy.csv")
 
 # Test if the data was successfully loaded
 if (exists("analysis_data")) {
+  message("Test Passed: The dataset was successfully loaded.")
+} else {
+  stop("Test Failed: The dataset could not be loaded.")
+}
+
+if (exists("analysis_data1")) {
   message("Test Passed: The dataset was successfully loaded.")
 } else {
   stop("Test Failed: The dataset could not be loaded.")
@@ -70,5 +77,53 @@ test_that("Scores are between 0 and 10", {
 test_that("Seasons are valid", {
   valid_years <- c(2019, 2020, 2021)
   valid_dates <- analysis_data$Season %in% valid_years
+  expect_true(all(valid_dates))
+})
+
+#### Test Analysis Data 1 ####
+
+# Test the number of rows
+if (nrow(analysis_data1) == 1140) {
+  message("Test Passed: The Italy dataset has 1140 rows.")
+} else {
+  stop("Test Failed: The Italy dataset does not have 1140 rows.")
+}
+
+test_that("Italy Data contains at least one record", {
+  expect_gt(nrow(analysis_data1), 0)
+})
+
+# Test: Validate column names
+test_that("Italy dataset contains all required columns", {
+  required_columns <- c("Date", "home", "visitor", "hgoal", "vgoal", "FT", "Season")
+  expect_true(all(required_columns %in% colnames(analysis_data1)))
+})
+
+# Test: Check for missing values
+test_that("No missing values in essential columns for Italy dataset", {
+  essential_columns <- c("Date", "home", "visitor", "hgoal", "vgoal", "FT", "Season")
+  expect_true(all(colSums(is.na(analysis_data1[essential_columns])) == 0))
+})
+
+# Test: Validate date range
+test_that("Dates are within the specified range for Italy dataset", {
+  expect_true(all(analysis_data1$date >= as.Date("2019-08-16") & analysis_data1$date <= as.Date("2022-05-22")))
+})
+
+# Test: Ensure home_team is not the same as away_team
+test_that("Home team is not the same as away team for Italy dataset", {
+  expect_false(any(analysis_data1$home == analysis_data1$visitor))
+})
+
+# Test: Ensure scores are within a reasonable range
+test_that("Scores are between 0 and 10 for Italy dataset", {
+  expect_true(all(analysis_data1$hgoal >= 0 & analysis_data1$hgoal <= 10))
+  expect_true(all(analysis_data1$vgoal >= 0 & analysis_data1$vgoal <= 10))
+})
+
+# Test: Validate Season
+test_that("Seasons are valid for Italy dataset", {
+  valid_years <- c(2019, 2020, 2021)
+  valid_dates <- analysis_data1$Season %in% valid_years
   expect_true(all(valid_dates))
 })
