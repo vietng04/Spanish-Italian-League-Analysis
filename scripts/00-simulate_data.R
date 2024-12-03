@@ -34,7 +34,7 @@ simulated_data_spain <- tibble(
 
 simulated_data_italy <- tibble(
   date = sample(seq(as.Date("2020-09-12"), as.Date("2022-05-22"), by = "day"), n, replace = TRUE),
-  home = sample(teams, n, replace = TRUE),
+  home = sample(teams_italy, n, replace = TRUE),
   visitor = sample(teams_italy, n, replace = TRUE),
   hgoal = sample(0:5, n, replace = TRUE),
   vgoal = sample(0:5, n, replace = TRUE),
