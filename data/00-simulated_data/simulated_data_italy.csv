@@ -14,7 +14,6 @@ date,home,visitor,hgoal,vgoal,FT
 2020-12-26,Lazio Roma,ACF Fiorentina,2,3,2
 2020-12-31,Udinese Calcio,Inter,2,5,3
 2021-09-20,Inter,Lazio Roma,5,2,0
-2020-11-22,AC Milan,AC Milan,1,3,4
 2021-12-04,AC Milan,Atalanta,3,2,5
 2021-04-28,Atalanta,Bologna FC,3,0,1
 2022-02-16,Atalanta,Bologna FC,1,0,0
@@ -27,19 +26,15 @@ date,home,visitor,hgoal,vgoal,FT
 2022-05-05,ACF Fiorentina,Udinese Calcio,2,3,1
 2021-06-30,AC Milan,Inter,4,4,3
 2021-10-03,Empoli FC,Lazio Roma,1,1,1
-2021-06-01,Lazio Roma,Lazio Roma,4,0,4
 2020-11-18,Atalanta,Udinese Calcio,5,3,1
 2021-01-09,Atalanta,ACF Fiorentina,5,4,1
 2022-03-30,Genoa CFC,Empoli FC,1,5,4
 2021-09-03,AS Roma,Inter,3,2,3
-2022-02-16,Inter,Inter,1,0,2
-2022-04-20,Juventus,Juventus,1,5,5
 2021-05-25,Atalanta,Empoli FC,3,3,4
 2021-08-26,Empoli FC,ACF Fiorentina,3,3,5
 2021-12-26,Udinese Calcio,AC Milan,0,0,2
 2020-12-08,Inter,Udinese Calcio,2,5,3
 2021-11-01,Juventus,Genoa CFC,0,5,0
-2020-09-22,Inter,Inter,2,0,5
 2022-04-20,Bologna FC,Genoa CFC,2,2,3
 2021-12-18,SSC Napoli,Juventus,5,3,5
 2021-06-25,Atalanta,Lazio Roma,2,4,1
@@ -47,7 +42,6 @@ date,home,visitor,hgoal,vgoal,FT
 2022-02-05,AS Roma,ACF Fiorentina,4,0,5
 2021-05-11,Lazio Roma,Inter,1,0,4
 2020-11-14,Lazio Roma,AC Milan,5,4,2
-2021-08-05,ACF Fiorentina,ACF Fiorentina,0,2,3
 2021-03-02,AS Roma,Lazio Roma,4,3,3
 2021-07-06,AC Milan,Bologna FC,2,2,0
 2021-02-18,Inter,AC Milan,2,5,3
@@ -67,10 +61,8 @@ date,home,visitor,hgoal,vgoal,FT
 2020-12-13,SSC Napoli,Juventus,1,1,3
 2022-01-13,Udinese Calcio,Empoli FC,2,0,5
 2020-10-29,Inter,ACF Fiorentina,0,0,2
-2022-01-06,Udinese Calcio,Udinese Calcio,2,2,2
 2021-05-17,Atalanta,Udinese Calcio,5,1,1
 2020-12-25,AS Roma,Empoli FC,5,1,3
-2021-03-01,ACF Fiorentina,ACF Fiorentina,2,5,5
 2021-12-14,Bologna FC,Lazio Roma,4,2,3
 2022-02-09,ACF Fiorentina,AS Roma,4,4,1
 2021-07-20,AS Roma,Udinese Calcio,1,4,5
@@ -78,9 +70,7 @@ date,home,visitor,hgoal,vgoal,FT
 2021-01-28,Atalanta,Inter,2,5,4
 2022-01-05,Juventus,Atalanta,4,3,3
 2021-05-19,Inter,AC Milan,0,0,0
-2022-05-01,Genoa CFC,Genoa CFC,0,5,4
 2021-08-07,AC Milan,SSC Napoli,4,5,2
-2021-03-25,Inter,Inter,2,1,2
 2020-12-19,Genoa CFC,AC Milan,1,3,0
 2020-12-18,AC Milan,Atalanta,5,4,0
 2020-11-08,AC Milan,Udinese Calcio,4,1,2
@@ -96,6 +86,5 @@ date,home,visitor,hgoal,vgoal,FT
 2022-04-23,Juventus,AC Milan,5,5,5
 2021-12-14,Udinese Calcio,Juventus,5,3,2
 2021-05-03,Empoli FC,AC Milan,3,0,3
-2022-02-22,Empoli FC,Empoli FC,5,1,2
 2020-11-05,Bologna FC,Atalanta,5,5,0
 2022-02-24,Genoa CFC,Atalanta,5,1,1
