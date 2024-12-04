@@ -1,18 +1,18 @@
 #### Preamble ####
-# Purpose: Simulates a dataset of Spain League data
+# Purpose: Simulates a dataset of Spain and Italy League data
   #state and party that won each division.
 # Author: Viet Nguyen
 # Date: 25 November 2024
 # Contact: viethoang.nguyen@mail.utoronto.ca
 # License: MIT
 # Pre-requisites: The `tidyverse` package must be installed
-# Any other information needed? Make sure you are in the `starter_folder` rproj
-
+# Any other information needed? Make sure you are in the `home_field_analysis` rproj
 
 #### Workspace setup ####
 library(tidyverse)
 library(dplyr)
 library(here)
+library(arrow)
 set.seed(123)
 
 #### Simulate data ####
@@ -41,7 +41,10 @@ simulated_data_italy <- tibble(
   FT = sample(0:5, n, replace = TRUE))
 
 # Avoid home_team == away_team
-simulated_data <- simulated_data %>%
+simulated_data_spain <- simulated_data_spain %>%
+  filter(home != visitor)
+
+simulated_data_italy <- simulated_data_italy %>%
   filter(home != visitor)
 
 #### Save data ####
