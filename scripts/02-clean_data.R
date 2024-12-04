@@ -1,5 +1,5 @@
 #### Preamble ####
-# Purpose: Cleans the raw National Football Team results data
+# Purpose: Cleans the raw Italy and Spain League data
 # Author: Viet Nguyen
 # Date: 25 November 2024
 # Contact: viethoang.nguyen@mail.utoronto.ca
