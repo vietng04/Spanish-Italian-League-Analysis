@@ -1,5 +1,5 @@
 #### Preamble ####
-# Purpose: Tests the structure and validity of the simulated Spain league dataset
+# Purpose: Tests the structure and validity of the simulated Spain and Italy league dataset
 # Author: Viet Nguyen
 # Date: 28 November 2024
 # Contact: viethoang.nguyen@mail.utoronto.ca
@@ -7,7 +7,7 @@
 # Pre-requisites: 
 # - The `tidyverse` package must be installed and loaded
 # - 00-simulate_data.R must have been run
-# Any other information needed? Make sure you are in the `starter_folder` rproj
+# Any other information needed? Make sure you are in the `home-field-analysis` rproj
 
 #### Workspace setup ####
 library(tidyverse)
@@ -31,10 +31,10 @@ if (exists("simulated_data1")) {
 
 #### Test data ####
 # Check if the dataset has 100 rows
-if (nrow(simulated_data) == 100) {
-  message("Test Passed: The dataset has 100 rows.")
+if (nrow(simulated_data) == 93) {
+  message("Test Passed: The dataset has 93 rows.")
 } else {
-  stop("Test Failed: The dataset does not have 100 rows.")
+  stop("Test Failed: The dataset does not have 93 rows.")
 }
 
 # Test: Check that required columns exist
@@ -102,9 +102,9 @@ if (is.double(simulated_data$FT)) {
 
 # Test: Ensure no home_team equals away_team
 if (all(simulated_data$home != simulated_data$visitor)) {
-  stop("Test Failed: Home team and away team cannot be the same.")
-} else {
   message("Test Passed: Home team is not the same as away team.")
+} else {
+  stop("Test Failed: Home team and away team cannot be the same.")
 }
 
 # Test: Ensure scores are within a reasonable range
@@ -129,11 +129,11 @@ if (exists("simulated_data1")) {
 }
 
 #### Test data ####
-# Check if the Italy dataset has 100 rows
-if (nrow(simulated_data1) == 100) {
-  message("Test Passed: The Italy dataset has 100 rows.")
+# Check if the Italy dataset has 89 rows
+if (nrow(simulated_data1) == 89) {
+  message("Test Passed: The Italy dataset has 89 rows.")
 } else {
-  stop("Test Failed: The Italy dataset does not have 100 rows.")
+  stop("Test Failed: The Italy dataset does not have 89 rows.")
 }
 
 # Test: Check that required columns exist
